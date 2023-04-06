@@ -10,7 +10,7 @@ border: 1px solid var(--background-darker);
 border-radius: 0.5rem;
 cursor: pointer;
 background-color: var(--background-secondary);
-color: rgba(184, 185, 191, 1);
+color: var(--media-text);
 display: flex;
 align-items: center;
 justify-content: center;
