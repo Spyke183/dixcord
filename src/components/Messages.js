@@ -37,6 +37,20 @@ const MessageContainer = styled.div`
   }
 `;
 
+const Upload = styled.div`
+  margin: 16px;
+  min-height: 100px;
+  width: 50%;
+  border: 1px solid var(--background-darker);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: var(--background-secondary);
+  color: var(--media-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 // const Card = styled.div`
 //   width: 289px;
 //   height: 375px;
@@ -127,6 +141,7 @@ export default function () {
           </MessageContainer>
         ))} */}
       </Messages>
+      <Upload>file.png</Upload>
     </>
   );
 }
