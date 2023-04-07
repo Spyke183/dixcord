@@ -22,7 +22,7 @@ const InputContainer = styled.div`
   }
 `;
 
-const Container_general = styled.div`
+const ContainerGeneral = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ const Container_general = styled.div`
     color: white;
   }
 `;
-const barre_container = styled.div`
+const BarreContainer = styled.div`
   display: flex;
   padding-top: 1rem;
 
@@ -75,7 +75,7 @@ const Upload = styled.div`
   justify-content: center;
 `;
 
-const TestFlex = styled.div`
+const RowContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -86,23 +86,23 @@ export default function () {
   return (
     <>
       <Messages>
-        <Container_general>
+        <ContainerGeneral>
           {result.map((msg) => (
-            <barre_container>
+            <BarreContainer>
               <InputContainer>
                 <img src={msg.imgavatar} alt={msg.name} />
               </InputContainer>
-              <TestFlex>
+              <RowContainer>
                 <NomContainer>
                   <span>{msg.user}</span>
                 </NomContainer>
                 <MessageContainer>
                   <span>{msg.message}</span>
                 </MessageContainer>
-              </TestFlex>
-            </barre_container>
+              </RowContainer>
+            </BarreContainer>
           ))}
-        </Container_general>
+        </ContainerGeneral>
       </Messages>
     </>
   );
