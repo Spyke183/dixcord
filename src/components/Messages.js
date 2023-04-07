@@ -26,7 +26,7 @@ const InputContainer = styled.div`
   }
 `;
 
-const NomContainer = styled.div`
+const TestContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -42,7 +42,20 @@ const NomContainer = styled.div`
     color: white;
   }
 `;
+const TestContainer2 = styled.div`
+  display: flex;
+`;
+const NomContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
 
+  > span {
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+  }
+`;
 const MessageContainer = styled.div`
   position: relative;
   display: flex;
@@ -152,9 +165,9 @@ export default function () {
     // </>
     <>
       <Messages>
-        <InputContainer>
+        <TestContainer>
           {result.map((msg) => (
-            <NomContainer>
+            <TestContainer2>
               <InputContainer>
                 <img src={msg.imgavatar} alt={msg.name} />
               </InputContainer>
@@ -166,9 +179,9 @@ export default function () {
                   <span>{msg.message}</span>
                 </MessageContainer>
               </TestFlex>
-            </NomContainer>
+            </TestContainer2>
           ))}
-        </InputContainer>
+        </TestContainer>
       </Messages>
       <Upload>file.png</Upload>
     </>
