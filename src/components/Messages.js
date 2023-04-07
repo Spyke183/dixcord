@@ -22,7 +22,7 @@ const InputContainer = styled.div`
   }
 `;
 
-const TestContainer = styled.div`
+const Container_general = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -38,11 +38,12 @@ const TestContainer = styled.div`
     color: white;
   }
 `;
-const TestContainer2 = styled.div`
+const barre_container = styled.div`
   display: flex;
   padding-top: 1rem;
+
   &:hover {
-    background-color: #2e3035;
+    background-color: var(--background-message-hover);
   }
 `;
 const NomContainer = styled.div`
@@ -85,9 +86,9 @@ export default function () {
   return (
     <>
       <Messages>
-        <TestContainer>
+        <Container_general>
           {result.map((msg) => (
-            <TestContainer2>
+            <barre_container>
               <InputContainer>
                 <img src={msg.imgavatar} alt={msg.name} />
               </InputContainer>
@@ -99,9 +100,9 @@ export default function () {
                   <span>{msg.message}</span>
                 </MessageContainer>
               </TestFlex>
-            </TestContainer2>
+            </barre_container>
           ))}
-        </TestContainer>
+        </Container_general>
       </Messages>
     </>
   );
