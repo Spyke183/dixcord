@@ -4,7 +4,6 @@ import { useState } from "react";
 import msg from "../data/messages.json";
 
 const Messages = styled.div`
-  display: grid;
   grid-template-columns: 3rem 1fr;
   margin-top: 1rem;
   gap: 1rem;
@@ -18,6 +17,7 @@ const Messages = styled.div`
 const InputContainer = styled.div`
   position: relative;
   align-items: center;
+  diplay: flex;
 
   > img {
     height: 40px;
@@ -26,14 +26,32 @@ const InputContainer = styled.div`
   }
 `;
 
-const MessageContainer = styled.div`
+const NomContainer = styled.div`
   position: relative;
-  align-items: center;
+  display: flex;
+  flex-direction: row;
 
   > img {
     height: 40px;
     width: 40px;
     margin-right: 16px;
+  }
+  > span {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+  }
+`;
+
+const MessageContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  > span {
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
   }
 `;
 
@@ -51,6 +69,11 @@ const Upload = styled.div`
   justify-content: center;
 `;
 
+const TestFlex = styled.div`
+  display: flex;
+`;
+
+// EXEMPLE AVEC COUNTRY
 // const Card = styled.div`
 //   width: 289px;
 //   height: 375px;
@@ -120,7 +143,7 @@ export default function () {
     //   </InputContainer>
     //       {result.map((country) => (
     //         <MessageContainer key={country.name}>
-    //           <img src={country.url} alt={country.name} />
+    //           <img src={country.imgavatar} alt={country.name} />
     //           <span>{country.name}</span>
     //         </MessageContainer>
     //       ))}
@@ -130,16 +153,22 @@ export default function () {
     <>
       <Messages>
         <InputContainer>
-          <img src={discordLogo} alt="Discord icon" />
-          <span></span>
+          {result.map((msg) => (
+            <NomContainer>
+              <InputContainer>
+                <img src={msg.imgavatar} alt={msg.name} />
+              </InputContainer>
+              <TestFlex>
+                <NomContainer>
+                  <span>{msg.user}</span>
+                </NomContainer>
+                <MessageContainer>
+                  <span>{msg.message}</span>
+                </MessageContainer>
+              </TestFlex>
+            </NomContainer>
+          ))}
         </InputContainer>
-
-        {/* {result.map((msg) => (
-          <MessageContainer>
-            <span>{msg.user}</span>
-            <span>{msg.message}</span>
-          </MessageContainer>
-        ))} */}
       </Messages>
       <Upload>file.png</Upload>
     </>
