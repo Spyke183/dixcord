@@ -8,10 +8,6 @@ const Messages = styled.div`
   margin-top: 1rem;
   gap: 1rem;
   padding: 0.25rem 1rem;
-
-  &:hover {
-    background-color: #2e3035;
-  }
 `;
 
 const InputContainer = styled.div`
@@ -29,7 +25,7 @@ const InputContainer = styled.div`
 const TestContainer = styled.div`
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   > img {
     height: 40px;
@@ -44,12 +40,12 @@ const TestContainer = styled.div`
 `;
 const TestContainer2 = styled.div`
   display: flex;
+  padding-top: 1rem;
+  &:hover {
+    background-color: #2e3035;
+  }
 `;
 const NomContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-
   > span {
     font-size: 15px;
     font-weight: 300;
@@ -57,10 +53,6 @@ const NomContainer = styled.div`
   }
 `;
 const MessageContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-
   > span {
     font-size: 15px;
     font-weight: 300;
@@ -84,85 +76,13 @@ const Upload = styled.div`
 
 const TestFlex = styled.div`
   display: flex;
+  flex-direction: column;
 `;
-
-// EXEMPLE AVEC COUNTRY
-// const Card = styled.div`
-//   width: 289px;
-//   height: 375px;
-//   padding: 25px;
-//   border-radius: 40px;
-//   background-color: var(--white);
-// `;
-
-// const InputContainer = styled.div`
-//   display: flex;
-//   align-items: center;
-//   max-height: 57px;
-//   max-width: 100%;
-//   padding: 20px;
-//   border-radius: 1.5rem;
-//   background-color: var(--beige);
-
-//   > span {
-//     height: 10px;
-//     width: 1px;
-//     margin: 0 15px;
-//     background-color: #c2c2c2;
-//   }
-// `;
-
-// const Input = styled.input`
-//   border: none;
-//   background: none;
-// `;
-
-// const MessageContainer = styled.li`
-//   display: flex;
-//   align-items: center;
-//   padding: 15px;
-//   max-width: 100%;
-//   margin-top: 10px;
-//   border-radius: 24px;
-//   cursor: pointer;
-
-//   &:hover {
-//     background-color: #f2f2f2;
-//   }
-
-//   > img {
-//     height: 30px;
-//     width: 30px;
-//     margin-right: 10px;
-//   }
-
-//   > span {
-//     font-size: 15px;
-//     font-weight: 500;
-//   }
-// `;
 
 export default function () {
   const [result, setResult] = useState(msg);
 
   return (
-    // <>
-    //   {isOpen ? (
-    //     <Card>
-    //   <InputContainer>
-    //     <img src={searchLogo} alt="Search icon" />
-    //     <span></span>
-    //     <Input placeholder="Search countries..." onChange={search} />
-    //   </InputContainer>
-    //       {result.map((country) => (
-    //         <MessageContainer key={country.name}>
-    //           <img src={country.imgavatar} alt={country.name} />
-    //           <span>{country.name}</span>
-    //         </MessageContainer>
-    //       ))}
-    //     </Card>
-    //   ) : null}
-    // </>
     <>
       <Messages>
         <TestContainer>
@@ -183,7 +103,6 @@ export default function () {
           ))}
         </TestContainer>
       </Messages>
-      <Upload>file.png</Upload>
     </>
   );
 }
