@@ -9,6 +9,7 @@ import SidebarUsers from "../components/SidebarUsers";
 import ChatHeader from "../components/ChatHeader";
 import { randomPropertyValue } from "../Utils";
 import Messages from "./Messages";
+import { addMessage } from "../api/api";
 
 const Container = styled.div`
     display: flex;
@@ -35,10 +36,11 @@ const MessagesWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-height: 100%;
+    flex: 75vh;
     overflow-y: scroll;
 `;
 const InputContainer = styled.div`
+    bottom: 1.5rem;
     padding: 1rem 1.5rem 1.5rem 1.5rem;
     background-color: var(--background-primary);
     z-index: 1;
@@ -96,7 +98,8 @@ const EmojiPicker = styled.div`
     bottom: 4rem;
 `;
 
-export default function ({ serverId, channelId }) {
+export default function ({ serverId, channelId, channelName, username }) {
+    const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
     const [showSidebarUsers, setShowSidebarUsers] = useState(false);
@@ -106,16 +109,30 @@ export default function ({ serverId, channelId }) {
 
     init({ data });
 
+    function onEnterPress(e) {
+        if ((e.charCode || e.keyCode) === 13) {
+            e.preventDefault();
+            addMessage(e, serverId, channelId, setMessages, message, username);
+            setMessage("");
+        }
+    }
+
     return (
         <Container>
             <ChatHeader
+                channelName={channelName}
                 setShowSidebarUsers={setShowSidebarUsers}
                 showSidebarUsers={showSidebarUsers}
             />
             <Wrapper>
                 <Chat>
                     <MessagesWrapper>
-                        <Messages serverId={serverId} channelId={channelId} />
+                        <Messages
+                            messages={messages}
+                            setMessages={setMessages}
+                            serverId={serverId}
+                            channelId={channelId}
+                        />
                     </MessagesWrapper>
                     <InputContainer>
                         <InputWrapper>
@@ -127,9 +144,10 @@ export default function ({ serverId, channelId }) {
                             <TextareaAutosize
                                 maxRows={15}
                                 className={styles.textArea}
-                                placeholder="Message #general"
+                                placeholder={`Message #${channelName}`}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
+                                onKeyDown={onEnterPress}
                             />
 
                             <EmojiPickerButton

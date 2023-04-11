@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import background from "../images/background.png";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+
 const Login = styled.div`
     display: flex;
     align-items: center;
@@ -82,22 +83,18 @@ const Container = styled.div`
     }
 `;
 
-export default function ({ username, setUsername }) {
+export default function ({ setUser }) {
     const navigate = useNavigate();
-
     const [email, setEmail] = useState("");
-    // const [username, setUsername] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleLogin(email, password) {
+    function handleRegister(email, password) {
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-
                 const user = userCredential.user;
-                setUsername(user.email);
-                navigate("/dashboard");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -105,20 +102,17 @@ export default function ({ username, setUsername }) {
                 console.error(errorCode, errorMessage);
             });
     }
+
     return (
         <Login>
             <Container>
                 <div>
-                    <h1>Ha, te revoilà !</h1>
-                    <h3>Nous sommes si heureux de te revoir !</h3>
+                    <h1>Créer un compte</h1>
                 </div>
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        handleLogin(email, password);
-                        // navigate("/dashboard", {
-                        //     state: { username: username },
-                        // });
+                        handleRegister(email, password);
                     }}
                 >
                     <label htmlFor="email" aria-required>
@@ -130,7 +124,15 @@ export default function ({ username, setUsername }) {
                         required
                         onChange={(e) => setEmail(e.target.value)}
                     ></input>
-
+                    <label htmlFor="username" aria-required>
+                        Nom d'utilisateur
+                    </label>
+                    <input
+                        type="text"
+                        id="username"
+                        required
+                        onChange={(e) => setUsername(e.target.value)}
+                    ></input>
                     <label htmlFor="password" aria-required>
                         Mot de passe
                     </label>
@@ -141,9 +143,9 @@ export default function ({ username, setUsername }) {
                         onChange={(e) => setPassword(e.target.value)}
                     ></input>
 
-                    <button type="submit">Connexion</button>
+                    <button type="submit">S'enregistrer</button>
                 </form>
-                <Link to="register">S'enregistrer</Link>
+                <Link to="/">Déjà un compte ? Se connecter</Link>
             </Container>
         </Login>
     );

@@ -1,36 +1,12 @@
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
-
+import { getMessages } from "../api/api";
 const MessageItem = styled.div``;
 
-export default function ({ serverId, channelId }) {
-    const [messages, setMessages] = useState([]);
-
-    const getMessages = async () => {
-        await getDocs(
-            collection(
-                db,
-                "servers",
-                serverId,
-                "channels",
-                channelId,
-                "messages"
-            )
-        ).then((querySnapshot) => {
-            const newData = querySnapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setMessages(newData);
-            console.log(newData);
-        });
-    };
-
-    // useEffect(() => {
-    //     getMessages();
-    // }, []);
+export default function ({ serverId, channelId, messages, setMessages }) {
+    useEffect(() => {
+        getMessages(serverId, channelId, setMessages);
+    }, []);
     return (
         <>
             {messages.map((message) => (
@@ -38,8 +14,6 @@ export default function ({ serverId, channelId }) {
                     {message.message} {message.username}
                 </MessageItem>
             ))}
-            {serverId}
-            <button onClick={getMessages}>Get messages</button>
         </>
     );
 }

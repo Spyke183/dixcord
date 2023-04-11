@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import styled from "styled-components";
 import ServerSidebar from "../components/SidebarServer";
-import SidebarChannel from "../components/SidebarChannel";
-import Chat from "../components/Chat";
+import ChatWrapper from "../components/ChatWrapper";
+import Call from "../components/Call";
+import DefaultChat from "../components/DefaultChat";
+import NotFound from "../components/NotFound";
 
 const Container = styled.div`
     position: relative;
@@ -20,19 +23,39 @@ const Wrapper = styled.div`
     flex-grow: 1;
     overflow: hidden;
 `;
-export default function () {
+export default function ({ username }) {
     const [serverId, setServerId] = useState(null);
+    const [serverName, setServerName] = useState(null);
     const [channelId, setChannelId] = useState(null);
+    const [channelName, setChannelName] = useState(null);
     return (
         <Container>
             <Wrapper>
-                <ServerSidebar setServerId={setServerId} />
-                <SidebarChannel
-                    serverId={serverId}
-                    setChannelId={setChannelId}
-                    user={"Your Name"}
+                <ServerSidebar
+                    setServerId={setServerId}
+                    setServerName={setServerName}
                 />
-                <Chat serverId={serverId} channelId={channelId} />
+                <Routes>
+                    <Route path="/" element={<DefaultChat />} />
+                    <Route
+                        path="/:id/*"
+                        element={
+                            <ChatWrapper
+                                serverId={serverId}
+                                serverName={serverName}
+                                channelId={channelId}
+                                setChannelId={setChannelId}
+                                channelName={channelName}
+                                setChannelName={setChannelName}
+                                username={username}
+                            />
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={<NotFound>Sélectionner un canal</NotFound>}
+                    />
+                </Routes>
             </Wrapper>
         </Container>
     );
