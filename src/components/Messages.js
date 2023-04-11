@@ -107,6 +107,7 @@ export default function () {
           ))}
         </ContainerGeneral>
       </Messages>
+      {/* //regarder le box-sizing https://developer.mozilla.org/fr/docs/Web/CSS/box-sizing */}
     </>
   );
 }
