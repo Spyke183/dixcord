@@ -4,22 +4,21 @@ import background from "../images/background.png";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 const Login = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    background-image: url(${background});
-    background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-image: url(${background});
+  background-size: contain;
 `;
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 33vw;
-    height: 33vh;
+    min-width: 33vw;
     padding: 2rem;
     background-color: var(--background-primary);
     box-shadow: var(--elevation-low);
@@ -83,68 +82,69 @@ const Container = styled.div`
 `;
 
 export default function ({ username, setUsername }) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState("");
-    // const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  // const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    function handleLogin(email, password) {
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
+  function handleLogin(email, password) {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
 
-                const user = userCredential.user;
-                setUsername(user.email);
-                navigate("/dashboard");
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
-            });
-    }
-    return (
-        <Login>
-            <Container>
-                <div>
-                    <h1>Ha, te revoilà !</h1>
-                    <h3>Nous sommes si heureux de te revoir !</h3>
-                </div>
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        handleLogin(email, password);
-                        // navigate("/dashboard", {
-                        //     state: { username: username },
-                        // });
-                    }}
-                >
-                    <label htmlFor="email" aria-required>
-                        E-mail
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                    ></input>
+        const user = userCredential.user;
+        setUsername(user.displayName);
 
-                    <label htmlFor="password" aria-required>
-                        Mot de passe
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                    ></input>
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+      });
+  }
+  return (
+    <Login>
+      <Container>
+        <div>
+          <h1>Ha, te revoilà !</h1>
+          <h3>Nous sommes si heureux de te revoir !</h3>
+        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin(email, password);
+            // navigate("/dashboard", {
+            //     state: { username: username },
+            // });
+          }}
+        >
+          <label htmlFor="email" aria-required>
+            E-mail
+          </label>
+          <input
+            type="email"
+            id="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
 
-                    <button type="submit">Connexion</button>
-                </form>
-                <Link to="register">S'enregistrer</Link>
-            </Container>
-        </Login>
-    );
+          <label htmlFor="password" aria-required>
+            Mot de passe
+          </label>
+          <input
+            type="password"
+            id="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
+
+          <button type="submit">Connexion</button>
+        </form>
+        <Link to="register">S'enregistrer</Link>
+      </Container>
+    </Login>
+  );
 }
