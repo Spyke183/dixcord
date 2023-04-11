@@ -13,9 +13,17 @@ export default function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path="register" element={<Register />} />
                     <Route
                         index
+                        element={
+                            <Login
+                                username={username}
+                                setUsername={setUsername}
+                            />
+                        }
+                    />
+                    <Route path="register" element={<Register />} />
+                    <Route
                         path="dashboard/*"
                         element={
                             username ? (
