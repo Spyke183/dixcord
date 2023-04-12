@@ -1,10 +1,48 @@
 [
-  { "user": "Sambeau", "message": "Ça fait un bail" },
-  { "user": "Ziad", "message": "Vous allez bien ?" },
-  { "user": "Pachara", "message": "Yo" },
-  { "user": "Yassine", "message": "Salut" },
-  { "user": "Aziz", "message": "slt" },
-  { "user": "Alexandre", "message": "Quelqu'un peut m'envoyer le fichier ?" },
-  { "user": "Torea", "media": "file.png" },
-  { "user": "Kylian", "message": "Merci" }
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Sambeau",
+    "message": "Ça fait un bail"
+  },
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Ziad",
+    "message": "Vous allez bien ?"
+  },
+
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Pachara",
+    "message": "Yo"
+  },
+
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Yassine",
+    "message": "Salut"
+  },
+
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Aziz",
+    "message": "slt"
+  },
+
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Alexandre",
+    "message": "Quelqu'un peut m'envoyer le fichier ?"
+  },
+
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Torea",
+    "media": "file.png"
+  },
+
+  {
+    "imgavatar": "../images/Avatar.svg",
+    "user": "Kylian",
+    "message": "Merci"
+  }
 ]
