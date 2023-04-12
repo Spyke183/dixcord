@@ -1,34 +1,14 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { Link } from "react-router-dom";
 
 import { Container } from "../components/Login/Container";
 import { Wrapper } from "../components/Login/Wrapper";
 
-export default function ({ setUsername }) {
-    const navigate = useNavigate();
-
+export default function () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleLogin(email, password) {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-
-                const user = userCredential.user;
-                setUsername(user.displayName);
-
-                navigate("/dashboard");
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
-            });
-    }
+    function handleLogin() {}
     return (
         <Container>
             <Wrapper>
