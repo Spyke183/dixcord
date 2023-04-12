@@ -36,11 +36,10 @@ const MessagesWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    flex: 75vh;
+    max-height: 100%;
     overflow-y: scroll;
 `;
 const InputContainer = styled.div`
-    bottom: 1.5rem;
     padding: 1rem 1.5rem 1.5rem 1.5rem;
     background-color: var(--background-primary);
     z-index: 1;
@@ -98,8 +97,7 @@ const EmojiPicker = styled.div`
     bottom: 4rem;
 `;
 
-export default function ({ serverId, channelId, channelName, username }) {
-    const [messages, setMessages] = useState([]);
+export default function () {
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
     const [showSidebarUsers, setShowSidebarUsers] = useState(false);
@@ -109,30 +107,16 @@ export default function ({ serverId, channelId, channelName, username }) {
 
     init({ data });
 
-    function onEnterPress(e) {
-        if ((e.charCode || e.keyCode) === 13) {
-            e.preventDefault();
-            addMessage(e, serverId, channelId, setMessages, message, username);
-            setMessage("");
-        }
-    }
-
     return (
         <Container>
             <ChatHeader
-                channelName={channelName}
                 setShowSidebarUsers={setShowSidebarUsers}
                 showSidebarUsers={showSidebarUsers}
             />
             <Wrapper>
                 <Chat>
                     <MessagesWrapper>
-                        <Messages
-                            messages={messages}
-                            setMessages={setMessages}
-                            serverId={serverId}
-                            channelId={channelId}
-                        />
+                        <Messages />
                     </MessagesWrapper>
                     <InputContainer>
                         <InputWrapper>
@@ -144,10 +128,9 @@ export default function ({ serverId, channelId, channelName, username }) {
                             <TextareaAutosize
                                 maxRows={15}
                                 className={styles.textArea}
-                                placeholder={`Message #${channelName}`}
+                                placeholder="Message #general"
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
-                                onKeyDown={onEnterPress}
                             />
 
                             <EmojiPickerButton

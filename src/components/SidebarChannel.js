@@ -6,8 +6,6 @@ import { ReactComponent as PlusLogo } from "../images/plus.svg";
 import { addChannel } from "../api/api";
 import { Link, useNavigate } from "react-router-dom";
 
-import { getAuth, signOut } from "firebase/auth";
-
 const Sidebar = styled.aside`
     display: flex;
     flex-direction: column;
@@ -41,15 +39,6 @@ const Header = styled.header`
         flex: 1;
         margin: 0;
     }
-
-    > svg {
-        height: 18px;
-        width: 18px;
-        path {
-            fill: white;
-        }
-    }
-
     &:hover {
         background-color: var(--hover-color);
     }
@@ -84,56 +73,19 @@ const BottomButton = styled.button`
     }
 `;
 
-export default function ({
-    serverId,
-    serverName,
-    setChannelId,
-    setChannelName,
-    username,
-}) {
-    const [channels, setChannels] = useState([]);
-    const navigate = useNavigate();
-
-    function handleLogout() {
-        const auth = getAuth();
-        signOut(auth)
-            .then(() => {
-                // Sign-out successful.
-                navigate("/");
-            })
-            .catch((error) => {
-                // An error happened.
-            });
-    }
+export default function ({ user }) {
     return (
         <Sidebar>
             <nav>
                 <Header>
-                    <h2>{serverName}</h2>
-                    <PlusLogo
-                        onClick={(e) =>
-                            addChannel(
-                                e,
-                                serverId,
-                                setChannels,
-                                "audio",
-                                "voice"
-                            )
-                        }
-                    />
+                    <h2>Dixcord</h2>
                 </Header>
-                <Channels
-                    serverId={serverId}
-                    setChannelId={setChannelId}
-                    setChannelName={setChannelName}
-                    channels={channels}
-                    setChannels={setChannels}
-                />
+                <Channels />
             </nav>
             <BottomSection>
-                <UserContainer>{username}</UserContainer>
+                <UserContainer>{user}</UserContainer>
 
-                <BottomButton onClick={handleLogout}>
+                <BottomButton>
                     <svg
                         aria-hidden="true"
                         role="img"
