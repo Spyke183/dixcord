@@ -5,6 +5,7 @@ import msg from "../data/messages.json";
 const Messages = styled.div`
 
   padding: 0.25rem 1rem;
+
 `;
 
 const ContainerGeneral = styled.div`
@@ -81,7 +82,7 @@ const Upload = styled.div`
   justify-content: center;
 
   @media (max-width: 768px) {
-    width: 10rem;
+    width: 20rem;
   }
 `;
 
