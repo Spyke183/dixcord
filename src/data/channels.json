@@ -1,8 +1,0 @@
-[
-  { "type": "text", "name": "general" },
-  { "type": "text", "name": "chill" },
-  { "type": "text", "name": "faq" },
-  { "type": "text", "name": "news" },
-  { "type": "voice", "name": "audio" },
-  { "type": "voice", "name": "video" }
-]
