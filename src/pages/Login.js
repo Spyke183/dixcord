@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Container } from "../components/Login/Container";
 import { Wrapper } from "../components/Login/Wrapper";
 
-export default function () {
+export default function ({ setUsername }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    function handleLogin() {}
+    const navigate = useNavigate();
+    function handleLogin() {
+        setUsername("Sambeau");
+        navigate("/dashboard");
+    }
     return (
         <Container>
             <Wrapper>
