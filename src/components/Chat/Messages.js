@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
-import msg from "../data/messages.json";
+import msg from "../../data/messages.json";
+import avatarImage from "../../images/Avatar.svg";
 
 const ContainerGeneral = styled.div`
     display: flex;
@@ -95,9 +96,9 @@ export default function () {
         <>
             <ContainerGeneral>
                 {result.map((msg) => (
-                    <BarreContainer>
+                    <BarreContainer key={msg.id}>
                         <InputContainer>
-                            <img src={msg.imgavatar} alt={msg.name} />
+                            <img src={avatarImage} alt={msg.name} />
                         </InputContainer>
                         <RowContainer>
                             <NomContainer>

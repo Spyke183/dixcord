@@ -1,48 +1,56 @@
 [
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Sambeau",
-    "message": "Ça fait un bail"
-  },
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Ziad",
-    "message": "Vous allez bien ?"
-  },
+    {
+        "id": 1,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Sambeau",
+        "message": "Ça fait un bail"
+    },
+    {
+        "id": 2,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Ziad",
+        "message": "Vous allez bien ?"
+    },
 
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Pachara",
-    "message": "Yo"
-  },
+    {
+        "id": 3,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Pachara",
+        "message": "Yo"
+    },
 
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Yassine",
-    "message": "Salut"
-  },
+    {
+        "id": 4,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Yassine",
+        "message": "Salut"
+    },
 
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Aziz",
-    "message": "slt"
-  },
+    {
+        "id": 5,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Aziz",
+        "message": "slt"
+    },
 
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Alexandre",
-    "message": "Quelqu'un peut m'envoyer le fichier ?"
-  },
+    {
+        "id": 6,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Alexandre",
+        "message": "Quelqu'un peut m'envoyer le fichier ?"
+    },
 
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Torea",
-    "media": "file.png"
-  },
+    {
+        "id": 7,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Torea",
+        "media": "file.png"
+    },
 
-  {
-    "imgavatar": "../images/Avatar.svg",
-    "user": "Kylian",
-    "message": "Merci"
-  }
+    {
+        "id": 8,
+        "imgavatar": "../../../images/Avatar.svg",
+        "user": "Kylian",
+        "message": "Merci"
+    }
 ]

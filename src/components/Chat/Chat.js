@@ -5,11 +5,11 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { init } from "emoji-mart";
 import { useState } from "react";
-import SidebarUsers from "../components/SidebarUsers";
-import ChatHeader from "../components/ChatHeader";
-import { randomPropertyValue } from "../Utils";
+import SidebarUsers from "../Users/SidebarUsers";
+import ChatHeader from "./ChatHeader";
+import { randomPropertyValue } from "../../Utils";
 import Messages from "./Messages";
-import { addMessage } from "../api/api";
+import { addMessage } from "../../api/api";
 
 const Container = styled.div`
     display: flex;
@@ -97,7 +97,7 @@ const EmojiPicker = styled.div`
     bottom: 4rem;
 `;
 
-export default function () {
+export default function ({ channelName }) {
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
     const [showSidebarUsers, setShowSidebarUsers] = useState(false);
@@ -110,6 +110,7 @@ export default function () {
     return (
         <Container>
             <ChatHeader
+                channelName={channelName}
                 setShowSidebarUsers={setShowSidebarUsers}
                 showSidebarUsers={showSidebarUsers}
             />

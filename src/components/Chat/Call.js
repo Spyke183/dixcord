@@ -1,5 +1,5 @@
 import { JitsiMeeting } from "@jitsi/react-sdk";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function ({ username }) {
     const navigate = useNavigate();

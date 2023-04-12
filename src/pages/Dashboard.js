@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import styled from "styled-components";
-import ServerSidebar from "../components/SidebarServer";
-import ChatWrapper from "../components/ChatWrapper";
-import DefaultChat from "../components/DefaultChat";
+import Chat from "../components/Chat/Chat.js";
+import Call from "../components/Chat/Call.js";
+import DefaultChat from "../components/Chat/DefaultChat.js";
+import ServersSidebar from "../components/Servers/ServersSidebar.js";
+import ServersList from "../components/Servers/ServersList.js";
+import ChannelsSidebar from "../components/Channels/ChannelsSidebar.js";
+import Modal from "../components/Modal.js";
 
 const Container = styled.div`
     position: relative;
@@ -27,7 +31,8 @@ export default function ({ username }) {
     const [serverName, setServerName] = useState(null);
     const [channelId, setChannelId] = useState(null);
     const [channelName, setChannelName] = useState(null);
-    function NoServer({ children }) {
+
+    function ProtectedRoute({ children }) {
         if (!serverId) {
             return <Navigate to="/dashboard" replace />;
         }
@@ -35,11 +40,14 @@ export default function ({ username }) {
     }
     return (
         <Container>
+            {/* <Modal></Modal> */}
             <Wrapper>
-                <ServerSidebar
-                    setServerId={setServerId}
-                    setServerName={setServerName}
-                />
+                <ServersSidebar>
+                    <ServersList
+                        setServerId={setServerId}
+                        setServerName={setServerName}
+                    />
+                </ServersSidebar>
                 <Routes>
                     <Route
                         path="/"
@@ -49,17 +57,41 @@ export default function ({ username }) {
                     <Route
                         path="/:id/*"
                         element={
-                            <NoServer>
-                                <ChatWrapper
+                            <ProtectedRoute>
+                                <ChannelsSidebar
                                     serverId={serverId}
                                     serverName={serverName}
-                                    channelId={channelId}
                                     setChannelId={setChannelId}
-                                    channelName={channelName}
                                     setChannelName={setChannelName}
+                                    channelName={channelName}
                                     username={username}
                                 />
-                            </NoServer>
+                                <Routes>
+                                    <Route
+                                        index
+                                        element={
+                                            <DefaultChat>
+                                                Sélectionner un canal
+                                            </DefaultChat>
+                                        }
+                                    />
+                                    <Route
+                                        path="/text/:id"
+                                        element={
+                                            <Chat
+                                                serverId={serverId}
+                                                channelId={channelId}
+                                                channelName={channelName}
+                                                username={username}
+                                            />
+                                        }
+                                    />
+                                    <Route
+                                        path="/voice/:id"
+                                        element={<Call username={username} />}
+                                    />
+                                </Routes>
+                            </ProtectedRoute>
                         }
                     />
                 </Routes>
