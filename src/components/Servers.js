@@ -99,7 +99,7 @@ const Edite3 = styled.div`
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.8;ll
   color: white;
 
   &:hover {
@@ -107,8 +107,6 @@ const Edite3 = styled.div`
     border-radius: 14px;
   }
 `;
-
-
 
 
 
