@@ -1,8 +1,8 @@
 [
-  { "type": "text", "name": "general" },
-  { "type": "text", "name": "chill" },
-  { "type": "text", "name": "faq" },
-  { "type": "text", "name": "news" },
+  { "type": "text", "name": "ca merite un 20" },
+  { "type": "text", "name": "J'etais malade" },
+  { "type": "text", "name": "On avait qu'un jour" },
+  { "type": "text", "name": "nudes (privé)" },
   { "type": "voice", "name": "audio" },
   { "type": "voice", "name": "video" }
 ]
