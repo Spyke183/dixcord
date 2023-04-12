@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import NotFound from "./components/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import "./styles.css";
@@ -31,10 +30,6 @@ export default function App() {
                 <Dashboard username={username} />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="*"
-            element={<NotFound>Sélectionner un serveur</NotFound>}
           />
         </Routes>
       </BrowserRouter>

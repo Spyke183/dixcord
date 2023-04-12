@@ -4,9 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import ServerSidebar from "../components/SidebarServer";
 import ChatWrapper from "../components/ChatWrapper";
-import Call from "../components/Call";
 import DefaultChat from "../components/DefaultChat";
-import NotFound from "../components/NotFound";
 
 const Container = styled.div`
   position: relative;
@@ -60,10 +58,6 @@ export default function ({ username }) {
                 />
               </NoServer>
             }
-          />
-          <Route
-            path="*"
-            element={<NotFound>Sélectionner un canal</NotFound>}
           />
         </Routes>
       </Wrapper>

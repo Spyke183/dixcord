@@ -10,6 +10,9 @@ const DefaultChat = styled.div`
   color: var(--text);
 `;
 
-export default function ({ username }) {
+export default function ({ username, children }) {
+  if (children) {
+    return <DefaultChat>{children}</DefaultChat>;
+  }
   return <DefaultChat>Bienvenue sur Dixcord, {username} !</DefaultChat>;
 }

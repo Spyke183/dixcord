@@ -2,7 +2,7 @@ import SidebarChannel from "./SidebarChannel";
 import Chat from "./Chat";
 import Call from "./Call";
 import { Route, Routes } from "react-router-dom";
-import NotFound from "./NotFound";
+import DefaultChat from "./DefaultChat";
 
 export default function ({
   serverId,
@@ -23,7 +23,7 @@ export default function ({
         username={username}
       />
       <Routes>
-        <Route path="/" element={<NotFound>Sélectionner un canal</NotFound>} />
+        <Route index element={<DefaultChat>Sélectionner un canal</DefaultChat>} />
         <Route
           path="/text/:id"
           element={
@@ -36,7 +36,6 @@ export default function ({
           }
         />
         <Route path="/voice/:id" element={<Call username={username} />} />
-        <Route path="*" element={<NotFound>Sélectionner un canal</NotFound>} />
       </Routes>
     </>
   );
