@@ -2,16 +2,13 @@ import styled from "styled-components";
 import { useState } from "react";
 import msg from "../data/messages.json";
 
-const Messages = styled.div`
-
-  padding: 0.25rem 1rem;
-`;
-
 const ContainerGeneral = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
 
   img {
+    padding: 0.25rem 1rem;
     height: 40px;
     width: 40px;
     margin-right: 16px;
@@ -25,7 +22,6 @@ const ContainerGeneral = styled.div`
 
 const BarreContainer = styled.div`
   display: flex;
-  padding-top: 1rem;
 
   &:hover {
     background-color: var(--background-message-hover);
@@ -36,12 +32,11 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center; /* ajout */
-  
+
   img {
     height: 40px;
     width: 40px;
     margin-right: 16px;
-    /*justify-self: center;*/ /* supprimé */
   }
 `;
 
@@ -80,38 +75,42 @@ const Upload = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 768px) {
-    width: 10rem;
+  &:hover {
+    background-color: var(--hover-color);
+  }
+
+  @media (max-width: 1200px) {
+    width: 30rem;
+  }
+
+  @media (max-width: 820px) {
+    width: 15rem;
   }
 `;
-
-
 
 export default function () {
   const [result, setResult] = useState(msg);
 
   return (
     <>
-      <Messages>
-        <ContainerGeneral>
-          {result.map((msg) => (
-            <BarreContainer>
-              <InputContainer>
-                <img src={msg.imgavatar} alt={msg.name} />
-              </InputContainer>
-              <RowContainer>
-                <NomContainer>
-                  <span>{msg.user}</span>
-                </NomContainer>
-                <MessageContainer>
-                  <span>{msg.message}</span>
-                  {msg.media === "file.png" && <Upload>file.png</Upload>}
-                </MessageContainer>
-              </RowContainer>
-            </BarreContainer>
-          ))}
-        </ContainerGeneral>
-      </Messages>
+      <ContainerGeneral>
+        {result.map((msg) => (
+          <BarreContainer>
+            <InputContainer>
+              <img src={msg.imgavatar} alt={msg.name} />
+            </InputContainer>
+            <RowContainer>
+              <NomContainer>
+                <span>{msg.user}</span>
+              </NomContainer>
+              <MessageContainer>
+                <span>{msg.message}</span>
+                {msg.media === "file.png" && <Upload>file.png</Upload>}
+              </MessageContainer>
+            </RowContainer>
+          </BarreContainer>
+        ))}
+      </ContainerGeneral>
     </>
   );
 }
