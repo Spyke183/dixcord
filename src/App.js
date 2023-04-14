@@ -6,32 +6,29 @@ import "./styles.css";
 import Register from "./pages/Register";
 
 export default function App() {
-    const [username, setUsername] = useState("");
-    function ProtectedRoute({ children }) {
-        if (!username) {
-            return <Navigate to="/" replace />;
-        }
-        return children;
+  const [username, setUsername] = useState("");
+  function ProtectedRoute({ children }) {
+    if (!username) {
+      return <Navigate to="/" replace />;
     }
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Routes>
-                    <Route
-                        index
-                        element={<Login setUsername={setUsername} />}
-                    />
-                    <Route path="register" element={<Register />} />
-                    <Route
-                        path="dashboard/*"
-                        element={
-                            <ProtectedRoute>
-                                <Dashboard username={username} />
-                            </ProtectedRoute>
-                        }
-                    />
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+    return children;
+  }
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Login setUsername={setUsername} />} />
+          <Route path="register" element={<Register setUser={setUsername} />} />
+          <Route
+            path="dashboard/*"
+            element={
+              <ProtectedRoute>
+                <Dashboard username={username} />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
